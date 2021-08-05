@@ -30,5 +30,5 @@ for n in range(n_terms):
 plt.plot(x_vals, 1/(1-x_vals), label="$1/(1-x)$")
 plt.xlabel("x")
 plt.ylabel("y")
-plt.ylim([0,25])
+plt.ylim([0.75,2])
 plt.legend()

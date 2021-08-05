@@ -1,21 +1,34 @@
-import sympy as sy
 import numpy as np
+np.seterr(divide='ignore', invalid='ignore') #para ignorar el error de dividir por 0
+import matplotlib.pyplot as plt
 
-x = sy.Symbol('x')
-f= 1/(1-x)
+# Orden
+n_terms = 5
 
-def factorial(n):
-    if n <= 0:
-        return 1
+# valores de x
+x_vals = np.linspace(0,1,100)
+
+# valores de y
+y_vals = np.zeros([n_terms,len(x_vals)])
+
+for n in range(n_terms):
+    
+    #Para orden 0
+    if n == 0:
+        y_vals[n,:] = np.ones(len(x_vals))
     else:
-        return n*factorial(n-1)
+        new_term = 1**n * (x_vals**n)
+        y_vals[n,:] = y_vals[n-1,:] + new_term
 
-def taylor(function, xo, n):
-    i = 0
-    p = 0
-    while i <= n:
-        p = p + (function.diff(x, i).subs(x,xo))/(factorial(i))*(x-xo)**i
-        i += 1
-    return p
+# Graficar los valores de los terminos
+for n in range(n_terms):
+    #if n == 25:
+        label = str(n) + " order"
+        plt.plot(x_vals,y_vals[n,:], label=label)
 
-print (taylor(f, 0, 4))
+# grafica la funcion real   
+plt.plot(x_vals, 1/(1-x_vals), label="$1/(1-x)$")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.ylim([0,25])
+plt.legend()

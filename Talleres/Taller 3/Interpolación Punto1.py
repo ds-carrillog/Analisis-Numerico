@@ -10,6 +10,7 @@ import numpy as np
 
 def lagrange(x, t, u = None):
     n = len(x)
+    s = t
     t = Symbol('t')
     p = 0
     for i in range(n):
@@ -17,7 +18,7 @@ def lagrange(x, t, u = None):
         for j in range(n):
             if j != i:
                 L = L*(t - x[j])/(x[i]-x[j])
-        p = p + y[i]*L
+        p = p + s[i]*L 
         p = expand(p)
     if u == None:
         return p

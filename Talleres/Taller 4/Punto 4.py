@@ -63,4 +63,5 @@ print("\nEl error máximo de la aproximación hacia la cacería de conejos es: "
 print("\nEl error promedio de la aproximación hacia la cacería de linces es: ", np.average(errorLinces))
 print("\nEl error máximo de la aproximación hacia la cacería de linces es: ", max(errorLinces), " en el año: ", u[np.argmax(errorLinces)]+1900)
 
-
+print(max(u))
+print(min(u))
